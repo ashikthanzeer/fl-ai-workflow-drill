@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyPlanner - Student Settings & Preferences</title>
+  <meta name="description" content="Manage your profile, study goals, reminder schedules, and notification preferences in StudyPlanner." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-dark">
+  <div class="background-decor">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-5"/>
+            <path d="M6 6h10"/>
+            <path d="M6 10h10"/>
+            <path d="M6 14h6"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-title">StudyPlanner</span>
+          <span class="brand-badge">PRO</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#overview" class="nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Dashboard
+        </a>
+        <a href="#schedule" class="nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+          Study Schedule
+        </a>
+        <a href="#analytics" class="nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          Focus Analytics
+        </a>
+        <a href="#settings" class="nav-item active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Settings
+        </a>
+      </nav>
+
+      <div class="user-quick-profile">
+        <div class="avatar" id="sidebarAvatar">JS</div>
+        <div class="user-meta">
+          <div class="user-name" id="sidebarFullName">Jordan Smith</div>
+          <div class="user-handle" id="sidebarUsername">@jordan_studies</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="content-header">
+        <div>
+          <h1 class="page-title">Settings & Preferences</h1>
+          <p class="page-subtitle">Configure your academic goals, notifications, and study rhythm.</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn btn-secondary" id="resetDefaultsBtn">Reset Defaults</button>
+          <button type="button" class="btn btn-primary" id="headerSaveBtn">Save Changes</button>
+        </div>
+      </header>
+
+      <!-- Toast Feedback -->
+      <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+      <!-- Settings Form -->
+      <form id="studyPlannerSettingsForm" class="settings-form" novalidate>
+        
+        <!-- SECTION 1: Academic Profile -->
+        <section class="settings-card">
+          <div class="card-header">
+            <div class="card-header-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <h2 class="card-title">Student Profile</h2>
+              <p class="card-desc">Personal and university details visible across peer study groups.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="fullName">Full Name <span class="req">*</span></label>
+              <div class="input-wrapper">
+                <input type="text" id="fullName" name="fullName" placeholder="e.g. Jordan Smith" autocomplete="name" required />
+                <span class="status-indicator"></span>
+              </div>
+              <p class="field-hint">Must be at least 3 characters long.</p>
+              <p class="error-msg" id="fullNameError"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="username">Username <span class="req">*</span></label>
+              <div class="input-wrapper input-prefix-wrapper">
+                <span class="input-prefix">@</span>
+                <input type="text" id="username" name="username" placeholder="jordansmith" autocomplete="username" required />
+                <span class="status-indicator"></span>
+              </div>
+              <p class="field-hint">3-20 lowercase alphanumeric characters or underscores.</p>
+              <p class="error-msg" id="usernameError"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Student / University Email <span class="req">*</span></label>
+              <div class="input-wrapper">
+                <input type="email" id="email" name="email" placeholder="jordan@university.edu" autocomplete="email" required />
+                <span class="status-indicator"></span>
+              </div>
+              <p class="field-hint">Used for exam reminders and team study invites.</p>
+              <p class="error-msg" id="emailError"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="academicMajor">Degree / Field of Study <span class="req">*</span></label>
+              <div class="input-wrapper">
+                <select id="academicMajor" name="academicMajor" required>
+                  <option value="">Select your discipline...</option>
+                  <option value="cs">Computer Science & Software Eng.</option>
+                  <option value="data">Data Science & AI</option>
+                  <option value="med">Medicine & Health Sciences</option>
+                  <option value="eng">Mechanical / Electrical Engineering</option>
+                  <option value="bio">Biology & Biotech</option>
+                  <option value="econ">Economics & Finance</option>
+                  <option value="law">Law & Public Policy</option>
+                  <option value="arts">Humanities & Creative Arts</option>
+                </select>
+                <span class="status-indicator"></span>
+              </div>
+              <p class="error-msg" id="academicMajorError"></p>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="bio">Study Bio & Current Focus</label>
+              <div class="input-wrapper">
+                <textarea id="bio" name="bio" rows="2" maxlength="160" placeholder="e.g. Preparing for Midterm Exams, focusing on Distributed Systems & Linear Algebra..."></textarea>
+              </div>
+              <div class="char-count-wrapper">
+                <span class="field-hint">Brief bio shown to accountability partners.</span>
+                <span class="char-counter" id="bioCounter">0 / 160</span>
+              </div>
+              <p class="error-msg" id="bioError"></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: Study Habits & Productivity Targets -->
+        <section class="settings-card">
+          <div class="card-header">
+            <div class="card-header-icon highlight-cyan">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <h2 class="card-title">Study Targets & Rhythm</h2>
+              <p class="card-desc">Calibrate automated schedules, Pomodoro intervals, and weekly quotas.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="dailyStudyGoal">Daily Target (Hours) <span class="req">*</span></label>
+              <div class="input-wrapper">
+                <input type="number" id="dailyStudyGoal" name="dailyStudyGoal" min="0.5" max="16" step="0.5" value="4.0" required />
+                <span class="input-unit">hrs/day</span>
+              </div>
+              <p class="field-hint">Range: 0.5 to 16 hours.</p>
+              <p class="error-msg" id="dailyStudyGoalError"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="pomodoroLength">Focus Block Length <span class="req">*</span></label>
+              <div class="input-wrapper">
+                <select id="pomodoroLength" name="pomodoroLength" required>
+                  <option value="25">Classic Pomodoro (25 min focus / 5 min break)</option>
+                  <option value="45">Deep Session (45 min focus / 10 min break)</option>
+                  <option value="50" selected>Ultradian Rhythm (50 min focus / 10 min break)</option>
+                  <option value="90">High Flow (90 min focus / 20 min break)</option>
+                </select>
+              </div>
+              <p class="error-msg" id="pomodoroLengthError"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="primaryExamDate">Upcoming Milestone / Exam Date <span class="req">*</span></label>
+              <div class="input-wrapper">
+                <input type="date" id="primaryExamDate" name="primaryExamDate" required />
+              </div>
+              <p class="field-hint">Must be today or a future date for countdown planning.</p>
+              <p class="error-msg" id="primaryExamDateError"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="weeklyStudyPace">Weekly Target Commitment</label>
+              <div class="range-display-container">
+                <input type="range" id="weeklyStudyPace" name="weeklyStudyPace" min="5" max="60" step="5" value="25" />
+                <span class="range-badge" id="weeklyStudyPaceVal">25 hrs / week</span>
+              </div>
+              <p class="field-hint">Auto-balances assignment deadlines across your week.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: Notifications & Sound Triggers -->
+        <section class="settings-card">
+          <div class="card-header">
+            <div class="card-header-icon highlight-violet">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            </div>
+            <div>
+              <h2 class="card-title">Reminders & Automation</h2>
+              <p class="card-desc">Keep your streak alive with smart browser and email notifications.</p>
+            </div>
+          </div>
+
+          <div class="toggle-list">
+            <label class="toggle-card">
+              <div class="toggle-content">
+                <span class="toggle-title">Browser Desktop Notifications</span>
+                <span class="toggle-subtitle">Receive break alerts and session completion sound chimes.</span>
+              </div>
+              <input type="checkbox" id="notifyDesktop" name="notifyDesktop" checked />
+              <span class="toggle-switch"></span>
+            </label>
+
+            <label class="toggle-card">
+              <div class="toggle-content">
+                <span class="toggle-title">Daily Morning Briefing (Email)</span>
+                <span class="toggle-subtitle">Summary of today's review flashcards and pending study blocks.</span>
+              </div>
+              <input type="checkbox" id="notifyEmailDaily" name="notifyEmailDaily" checked />
+              <span class="toggle-switch"></span>
+            </label>
+
+            <label class="toggle-card">
+              <div class="toggle-content">
+                <span class="toggle-title">Streak Protection Warning</span>
+                <span class="toggle-subtitle">Pings you at 8:00 PM if your daily target isn't met yet.</span>
+              </div>
+              <input type="checkbox" id="streakProtection" name="streakProtection" checked />
+              <span class="toggle-switch"></span>
+            </label>
+          </div>
+        </section>
+
+        <!-- SECTION 4: Theme & Accessibility -->
+        <section class="settings-card">
+          <div class="card-header">
+            <div class="card-header-icon highlight-emerald">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+            </div>
+            <div>
+              <h2 class="card-title">Interface & Focus Mode</h2>
+              <p class="card-desc">Personalize UI colors and eliminate sensory distractions.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="themeSelect">Visual Theme</label>
+              <div class="input-wrapper">
+                <select id="themeSelect" name="themeSelect">
+                  <option value="theme-dark">Midnight Indigo (Dark)</option>
+                  <option value="theme-light">Clean Chalk (Light)</option>
+                  <option value="theme-oled">Deep OLED Black</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="accentColor">Accent Color</label>
+              <div class="color-picker-group">
+                <input type="color" id="accentColor" name="accentColor" value="#6366f1" />
+                <span class="color-code" id="accentColorCode">#6366f1</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Form Actions Bar -->
+        <div class="form-footer-bar">
+          <div class="form-status" id="formStatus">
+            <span class="status-dot"></span>
+            <span class="status-text">All changes saved locally</span>
+          </div>
+          <div class="footer-buttons">
+            <button type="button" class="btn btn-secondary" id="discardBtn">Discard</button>
+            <button type="submit" class="btn btn-primary" id="saveBtn">
+              <span class="btn-spinner" id="btnSpinner" aria-hidden="true"></span>
+              <span class="btn-text">Save Preferences</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
