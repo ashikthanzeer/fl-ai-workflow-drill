@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyPlanner — Account & Study Settings</title>
+  <meta name="description" content="Manage your StudyPlanner profile, study reminders, break intervals, targets, and notification permissions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-dark">
+  <!-- Decorative background elements -->
+  <div class="bg-gradient-mesh" aria-hidden="true">
+    <div class="mesh-orb orb-1"></div>
+    <div class="mesh-orb orb-2"></div>
+    <div class="mesh-orb orb-3"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" aria-label="Main Navigation">
+      <div class="brand-header">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-5"/>
+            <path d="M6 6h10"/>
+            <path d="M6 10h10"/>
+            <path d="M6 14h6"/>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <span class="brand-name">StudyPlanner</span>
+          <span class="brand-badge">PRO</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#dashboard" class="nav-link" aria-current="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Dashboard
+        </a>
+        <a href="#planner" class="nav-link" aria-current="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+          Study Schedule
+        </a>
+        <a href="#analytics" class="nav-link" aria-current="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          Analytics & Goals
+        </a>
+        <a href="#settings" class="nav-link active" aria-current="page">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          Settings
+        </a>
+      </nav>
+
+      <!-- Sidebar Mini Profile -->
+      <div class="sidebar-user-card" id="sidebarProfileCard">
+        <div class="user-avatar-small" id="sidebarAvatar">
+          <img src="" alt="Active user avatar" id="sidebarAvatarImg" />
+        </div>
+        <div class="user-info-text">
+          <span class="user-name-display" id="sidebarName">Alex Morgan</span>
+          <span class="user-email-display" id="sidebarEmail">alex.morgan@university.edu</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content" id="mainContent">
+      <header class="settings-header">
+        <div class="header-left">
+          <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+            <span>StudyPlanner</span>
+            <span class="separator" aria-hidden="true">/</span>
+            <span class="current">Preferences & Settings</span>
+          </nav>
+          <h1 class="page-title">Settings & Preferences</h1>
+          <p class="page-subtitle">Configure your student identity, daily study schedules, target goals, and notification channels.</p>
+        </div>
+
+        <div class="header-actions">
+          <div class="status-indicator" id="syncStatus" role="status" aria-live="polite">
+            <span class="status-pulse" aria-hidden="true"></span>
+            <span class="status-label">All changes saved</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Live Announcements Region for Accessibility -->
+      <div id="liveAnnouncer" class="sr-only" aria-live="polite" role="status"></div>
+
+      <!-- Main Form -->
+      <form id="settingsForm" class="settings-form" novalidate>
+        <!-- Top Save State Banner (displays upon successful save) -->
+        <div id="saveSuccessBanner" class="alert-banner alert-success hidden" role="status" aria-live="polite">
+          <div class="alert-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="alert-content">
+            <strong class="alert-title">Settings saved successfully!</strong>
+            <p class="alert-desc">Your preferences and study configuration have been updated. All entered values remain active.</p>
+          </div>
+          <button type="button" class="alert-dismiss" id="dismissSuccessBtn" aria-label="Dismiss success message">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <!-- Top Error State Banner (displays upon failed validation) -->
+        <div id="saveErrorBanner" class="alert-banner alert-danger hidden" role="alert" aria-live="assertive">
+          <div class="alert-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="alert-content">
+            <strong class="alert-title">Please correct the highlighted errors</strong>
+            <p class="alert-desc" id="saveErrorSummary">Form submission was blocked because some fields failed validation.</p>
+          </div>
+          <button type="button" class="alert-dismiss" id="dismissErrorBtn" aria-label="Dismiss error message">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <!-- SECTION 1: USER PROFILE -->
+        <fieldset class="form-section-card" id="fieldsetProfile">
+          <legend class="section-legend">
+            <span class="legend-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+            User Profile
+          </legend>
+          <p class="section-desc">Manage your public student identity and avatar display.</p>
+
+          <!-- Avatar Selection Section -->
+          <div class="avatar-manager-wrapper">
+            <span class="group-label" id="avatarGroupLabel">Profile Picture</span>
+            <div class="avatar-controls-grid">
+              <!-- Current Avatar Preview Box -->
+              <div class="avatar-preview-box">
+                <div class="avatar-preview-frame">
+                  <img id="activeAvatarImg" src="" alt="Current Profile Picture Preview" />
+                </div>
+                <div class="avatar-source-pill" id="avatarSourcePill">Preset Avatar</div>
+              </div>
+
+              <!-- Avatar Selection Options -->
+              <div class="avatar-selection-options">
+                <!-- Preset Avatars -->
+                <div class="preset-avatars-block">
+                  <span class="option-subtitle" id="presetSubtitle">Choose from presets</span>
+                  <div class="presets-row" role="radiogroup" aria-labelledby="presetSubtitle" id="presetRadiogroup">
+                    <!-- Preset 1 -->
+                    <label class="preset-choice-label">
+                      <input type="radio" name="avatarChoice" value="preset-1" class="preset-radio sr-only" checked />
+                      <div class="preset-thumbnail" title="Scholar Blue">
+                        <img src="" alt="Scholar Blue Avatar" class="preset-thumb-img" data-preset="preset-1" />
+                      </div>
+                    </label>
+                    <!-- Preset 2 -->
+                    <label class="preset-choice-label">
+                      <input type="radio" name="avatarChoice" value="preset-2" class="preset-radio sr-only" />
+                      <div class="preset-thumbnail" title="Emerald Scientist">
+                        <img src="" alt="Emerald Scientist Avatar" class="preset-thumb-img" data-preset="preset-2" />
+                      </div>
+                    </label>
+                    <!-- Preset 3 -->
+                    <label class="preset-choice-label">
+                      <input type="radio" name="avatarChoice" value="preset-3" class="preset-radio sr-only" />
+                      <div class="preset-thumbnail" title="Violet Analyst">
+                        <img src="" alt="Violet Analyst Avatar" class="preset-thumb-img" data-preset="preset-3" />
+                      </div>
+                    </label>
+                    <!-- Preset 4 -->
+                    <label class="preset-choice-label">
+                      <input type="radio" name="avatarChoice" value="preset-4" class="preset-radio sr-only" />
+                      <div class="preset-thumbnail" title="Amber Thinker">
+                        <img src="" alt="Amber Thinker Avatar" class="preset-thumb-img" data-preset="preset-4" />
+                      </div>
+                    </label>
+                    <!-- Preset 5 -->
+                    <label class="preset-choice-label">
+                      <input type="radio" name="avatarChoice" value="preset-5" class="preset-radio sr-only" />
+                      <div class="preset-thumbnail" title="Rose Researcher">
+                        <img src="" alt="Rose Researcher Avatar" class="preset-thumb-img" data-preset="preset-5" />
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- External Upload Block -->
+                <div class="upload-avatar-block">
+                  <span class="option-subtitle" id="uploadSubtitle">Or upload an external photo</span>
+                  <div class="upload-actions-row">
+                    <label for="avatarFileInput" class="btn btn-secondary file-upload-btn">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                      <span>Upload Image</span>
+                    </label>
+                    <input type="file" id="avatarFileInput" name="avatarFileInput" accept="image/jpeg,image/png,image/webp,image/gif" class="sr-only" aria-describedby="avatarFileHint avatarError" />
+
+                    <button type="button" id="resetAvatarBtn" class="btn btn-ghost" title="Reset to default avatar">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                      <span>Reset</span>
+                    </button>
+                  </div>
+                  <span class="field-hint" id="avatarFileHint">Accepted: JPG, PNG, WebP, GIF (Max 5MB).</span>
+                </div>
+              </div>
+            </div>
+            <div id="avatarError" class="field-error-msg hidden" role="alert"></div>
+          </div>
+
+          <!-- Name & Email Inputs Grid -->
+          <div class="form-grid-two-col">
+            <!-- Full Name -->
+            <div class="form-group" id="groupFullName">
+              <label for="fullName" class="field-label">
+                Full Name <span class="required-indicator" aria-hidden="true">*</span>
+              </label>
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  class="form-control"
+                  placeholder="e.g. Alex Morgan"
+                  autocomplete="name"
+                  required
+                  aria-required="true"
+                  aria-describedby="fullNameHint fullNameError"
+                />
+                <span class="input-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+              </div>
+              <span class="field-hint" id="fullNameHint">Your student display name across study groups.</span>
+              <div id="fullNameError" class="field-error-msg hidden" role="alert"></div>
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-group" id="groupEmail">
+              <label for="email" class="field-label">
+                Email Address <span class="required-indicator" aria-hidden="true">*</span>
+              </label>
+              <div class="input-wrapper">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="alex.morgan@university.edu"
+                  autocomplete="email"
+                  required
+                  aria-required="true"
+                  aria-describedby="emailHint emailError"
+                />
+                <span class="input-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </span>
+              </div>
+              <span class="field-hint" id="emailHint">Used for daily schedules and account notifications.</span>
+              <div id="emailError" class="field-error-msg hidden" role="alert"></div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- SECTION 2: PASSWORD & SECURITY -->
+        <fieldset class="form-section-card" id="fieldsetSecurity">
+          <legend class="section-legend">
+            <span class="legend-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            Security & Password Change
+          </legend>
+          <p class="section-desc">Change your password. To keep your current password, leave these fields blank.</p>
+
+          <div class="form-grid-three-col">
+            <!-- Current Password -->
+            <div class="form-group" id="groupCurrentPassword">
+              <label for="currentPassword" class="field-label">Current Password</label>
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  id="currentPassword"
+                  name="currentPassword"
+                  class="form-control"
+                  placeholder="••••••••••••"
+                  autocomplete="current-password"
+                  aria-describedby="currentPasswordHint currentPasswordError"
+                />
+                <button type="button" class="pwd-toggle-btn" data-target="currentPassword" aria-label="Toggle current password visibility">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="eye-open"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+              <span class="field-hint" id="currentPasswordHint">Required if setting a new password.</span>
+              <div id="currentPasswordError" class="field-error-msg hidden" role="alert"></div>
+            </div>
+
+            <!-- New Password -->
+            <div class="form-group" id="groupNewPassword">
+              <label for="newPassword" class="field-label">New Password</label>
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  id="newPassword"
+                  name="newPassword"
+                  class="form-control"
+                  placeholder="Min. 8 chars, 1 number"
+                  autocomplete="new-password"
+                  aria-describedby="newPasswordHint newPasswordError"
+                />
+                <button type="button" class="pwd-toggle-btn" data-target="newPassword" aria-label="Toggle new password visibility">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="eye-open"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+              <span class="field-hint" id="newPasswordHint">Must not match your previous password.</span>
+              <div id="newPasswordError" class="field-error-msg hidden" role="alert"></div>
+            </div>
+
+            <!-- Confirm New Password -->
+            <div class="form-group" id="groupConfirmPassword">
+              <label for="confirmPassword" class="field-label">Confirm New Password</label>
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  class="form-control"
+                  placeholder="Repeat new password"
+                  autocomplete="new-password"
+                  aria-describedby="confirmPasswordHint confirmPasswordError"
+                />
+                <button type="button" class="pwd-toggle-btn" data-target="confirmPassword" aria-label="Toggle confirm password visibility">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="eye-open"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+              <span class="field-hint" id="confirmPasswordHint">Must match the new password above.</span>
+              <div id="confirmPasswordError" class="field-error-msg hidden" role="alert"></div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- SECTION 3: DAILY STUDY REMINDER -->
+        <fieldset class="form-section-card" id="fieldsetReminders">
+          <legend class="section-legend">
+            <span class="legend-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+            Daily Study Reminder
+          </legend>
+          <p class="section-desc">Receive scheduled alerts to start your study sessions and maintain study streaks.</p>
+
+          <!-- Reminder Toggle Switch -->
+          <div class="toggle-control-card">
+            <div class="toggle-info">
+              <label for="reminderEnabled" class="toggle-title-label">Enable Daily Study Reminder</label>
+              <p class="toggle-caption">Sends a timed reminder to get into focused study mode.</p>
+            </div>
+            <label class="switch-ui" for="reminderEnabled">
+              <input type="checkbox" id="reminderEnabled" name="reminderEnabled" checked />
+              <span class="switch-slider" aria-hidden="true"></span>
+              <span class="sr-only">Toggle daily study reminder</span>
+            </label>
+          </div>
+
+          <!-- Reminder Details (Time + Days) -->
+          <div class="reminder-details-panel" id="reminderDetailsPanel">
+            <div class="form-grid-two-col">
+              <!-- Reminder Time -->
+              <div class="form-group" id="groupReminderTime">
+                <label for="reminderTime" class="field-label">
+                  Reminder Time <span class="required-indicator" aria-hidden="true">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <input
+                    type="time"
+                    id="reminderTime"
+                    name="reminderTime"
+                    class="form-control"
+                    value="08:30"
+                    aria-describedby="reminderTimeHint reminderTimeError"
+                  />
+                  <span class="input-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  </span>
+                </div>
+                <span class="field-hint" id="reminderTimeHint">Exact time of day for your study nudge.</span>
+                <div id="reminderTimeError" class="field-error-msg hidden" role="alert"></div>
+              </div>
+
+              <!-- Study Days Multi-Selector -->
+              <div class="form-group" id="groupReminderDays">
+                <span class="field-label" id="reminderDaysLabel">
+                  Active Study Days <span class="required-indicator" aria-hidden="true">*</span>
+                </span>
+                <div class="days-checkbox-cluster" role="group" aria-labelledby="reminderDaysLabel" id="daysCluster">
+                  <label class="day-check-badge">
+                    <input type="checkbox" name="reminderDays" value="Mon" checked class="day-input sr-only" />
+                    <span class="day-text">Mon</span>
+                  </label>
+                  <label class="day-check-badge">
+                    <input type="checkbox" name="reminderDays" value="Tue" checked class="day-input sr-only" />
+                    <span class="day-text">Tue</span>
+                  </label>
+                  <label class="day-check-badge">
+                    <input type="checkbox" name="reminderDays" value="Wed" checked class="day-input sr-only" />
+                    <span class="day-text">Wed</span>
+                  </label>
+                  <label class="day-check-badge">
+                    <input type="checkbox" name="reminderDays" value="Thu" checked class="day-input sr-only" />
+                    <span class="day-text">Thu</span>
+                  </label>
+                  <label class="day-check-badge">
+                    <input type="checkbox" name="reminderDays" value="Fri" checked class="day-input sr-only" />
+                    <span class="day-text">Fri</span>
+                  </label>
+                  <label class="day-check-badge">
+                    <input type="checkbox" name="reminderDays" value="Sat" class="day-input sr-only" />
+                    <span class="day-text">Sat</span>
+                  </label>
+                  <label class="day-check-badge">
+                    <input type="checkbox" name="reminderDays" value="Sun" class="day-input sr-only" />
+                    <span class="day-text">Sun</span>
+                  </label>
+                </div>
+                <span class="field-hint" id="reminderDaysHint">Select which days you want study reminder alerts.</span>
+                <div id="reminderDaysError" class="field-error-msg hidden" role="alert"></div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- SECTION 4: BREAK & TARGET SETTINGS -->
+        <fieldset class="form-section-card" id="fieldsetBreakTargets">
+          <legend class="section-legend">
+            <span class="legend-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+            </span>
+            Break & Target Settings
+          </legend>
+          <p class="section-desc">Calibrate your Pomodoro session lengths, break intervals, and daily study targets.</p>
+
+          <div class="form-grid-four-col">
+            <!-- Daily Study Target Hours -->
+            <div class="form-group" id="groupDailyTarget">
+              <label for="dailyTargetHours" class="field-label">Daily Target (Hours)</label>
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="dailyTargetHours"
+                  name="dailyTargetHours"
+                  class="form-control"
+                  step="0.5"
+                  min="0.5"
+                  max="16"
+                  value="4.5"
+                  aria-describedby="dailyTargetHint dailyTargetHoursError"
+                />
+                <span class="input-unit">hrs</span>
+              </div>
+              <span class="field-hint" id="dailyTargetHint">Goal between 0.5 and 16.0 hours.</span>
+              <div id="dailyTargetHoursError" class="field-error-msg hidden" role="alert"></div>
+            </div>
+
+            <!-- Focus Study Interval -->
+            <div class="form-group" id="groupStudyInterval">
+              <label for="studyIntervalMinutes" class="field-label">Focus Interval (Mins)</label>
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="studyIntervalMinutes"
+                  name="studyIntervalMinutes"
+                  class="form-control"
+                  step="5"
+                  min="15"
+                  max="180"
+                  value="45"
+                  aria-describedby="studyIntervalHint studyIntervalMinutesError"
+                />
+                <span class="input-unit">min</span>
+              </div>
+              <span class="field-hint" id="studyIntervalHint">Focus block (15 – 180 mins).</span>
+              <div id="studyIntervalMinutesError" class="field-error-msg hidden" role="alert"></div>
+            </div>
+
+            <!-- Short Break Minutes -->
+            <div class="form-group" id="groupShortBreak">
+              <label for="shortBreakMinutes" class="field-label">Short Break (Mins)</label>
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="shortBreakMinutes"
+                  name="shortBreakMinutes"
+                  class="form-control"
+                  step="1"
+                  min="3"
+                  max="30"
+                  value="10"
+                  aria-describedby="shortBreakHint shortBreakMinutesError"
+                />
+                <span class="input-unit">min</span>
+              </div>
+              <span class="field-hint" id="shortBreakHint">Rest between focus blocks (3 – 30 min).</span>
+              <div id="shortBreakMinutesError" class="field-error-msg hidden" role="alert"></div>
+            </div>
+
+            <!-- Long Break Minutes -->
+            <div class="form-group" id="groupLongBreak">
+              <label for="longBreakMinutes" class="field-label">Long Break (Mins)</label>
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="longBreakMinutes"
+                  name="longBreakMinutes"
+                  class="form-control"
+                  step="5"
+                  min="10"
+                  max="60"
+                  value="25"
+                  aria-describedby="longBreakHint longBreakMinutesError"
+                />
+                <span class="input-unit">min</span>
+              </div>
+              <span class="field-hint" id="longBreakHint">Extended rest (10 – 60 min, ≥ short break).</span>
+              <div id="longBreakMinutesError" class="field-error-msg hidden" role="alert"></div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- SECTION 5: NOTIFICATION PERMISSIONS -->
+        <fieldset class="form-section-card" id="fieldsetNotifications">
+          <legend class="section-legend">
+            <span class="legend-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            </span>
+            Notification Permissions & Preferences
+          </legend>
+          <p class="section-desc">Manage system-level browser alerts and study reminder delivery channels.</p>
+
+          <!-- System Permission Card -->
+          <div class="permission-status-banner">
+            <div class="permission-status-left">
+              <div class="permission-badge" id="permissionBadge">
+                <span class="badge-dot" aria-hidden="true"></span>
+                <span class="badge-text" id="permissionBadgeText">System: Default</span>
+              </div>
+              <p class="permission-desc" id="permissionDesc">
+                Allow browser notifications to receive study countdowns, break alerts, and reminder nudges even when the tab is in the background.
+              </p>
+            </div>
+            <button type="button" id="requestPermissionBtn" class="btn btn-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span>Enable Browser Alerts</span>
+            </button>
+          </div>
+
+          <!-- Channel Checkboxes / Toggles -->
+          <div class="notification-channels-grid">
+            <!-- Channel 1: Desktop Push -->
+            <div class="channel-toggle-row">
+              <div class="channel-info">
+                <label for="notifyDesktop" class="channel-name-label">Desktop Push Notifications</label>
+                <span class="channel-sub">Pops up native desktop banners when study sessions start or end.</span>
+              </div>
+              <label class="switch-ui" for="notifyDesktop">
+                <input type="checkbox" id="notifyDesktop" name="notifyDesktop" checked />
+                <span class="switch-slider" aria-hidden="true"></span>
+                <span class="sr-only">Toggle desktop push notifications</span>
+              </label>
+            </div>
+
+            <!-- Channel 2: Email Digest -->
+            <div class="channel-toggle-row">
+              <div class="channel-info">
+                <label for="notifyEmailDigest" class="channel-name-label">Daily Email Study Digest</label>
+                <span class="channel-sub">Morning briefing with your scheduled goals and upcoming exam deadlines.</span>
+              </div>
+              <label class="switch-ui" for="notifyEmailDigest">
+                <input type="checkbox" id="notifyEmailDigest" name="notifyEmailDigest" checked />
+                <span class="switch-slider" aria-hidden="true"></span>
+                <span class="sr-only">Toggle daily email study digest</span>
+              </label>
+            </div>
+
+            <!-- Channel 3: Sound Alerts -->
+            <div class="channel-toggle-row">
+              <div class="channel-info">
+                <label for="notifySound" class="channel-name-label">Audio Chimes on Break Transitions</label>
+                <span class="channel-sub">Plays a soft, unobtrusive sound when Pomodoro sessions or breaks finish.</span>
+              </div>
+              <label class="switch-ui" for="notifySound">
+                <input type="checkbox" id="notifySound" name="notifySound" checked />
+                <span class="switch-slider" aria-hidden="true"></span>
+                <span class="sr-only">Toggle audio chimes</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- FORM ACTION CONTROLS FOOTER -->
+        <div class="form-actions-toolbar">
+          <div class="actions-left">
+            <button type="button" id="discardChangesBtn" class="btn btn-ghost">
+              Discard Changes
+            </button>
+            <button type="button" id="resetDefaultsBtn" class="btn btn-ghost text-muted">
+              Reset to Defaults
+            </button>
+          </div>
+
+          <div class="actions-right">
+            <!-- Primary Save Action Button -->
+            <button
+              type="submit"
+              id="saveSettingsBtn"
+              class="btn btn-primary"
+              aria-label="Save all settings and preferences"
+            >
+              <!-- Normal State Icon -->
+              <span class="btn-icon normal-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              </span>
+              <!-- Spinner Icon (shown during save) -->
+              <span class="btn-spinner hidden" aria-hidden="true">
+                <svg class="spin-animation" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/></svg>
+              </span>
+              <span class="btn-text" id="saveBtnText">Save Settings</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <!-- Toast Notification Container for Floating Confirmations -->
+  <div id="toastContainer" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

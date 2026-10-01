@@ -1,0 +1,13 @@
+{
+  "name": "studyplanner-settings",
+  "version": "1.0.0",
+  "description": "StudyPlanner Settings Form with Validation and Accessibility",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "lint": "node --check validator.js && node --check script.js"
+  },
+  "devDependencies": {
+    "jsdom": "^26.0.0"
+  }
+}
